@@ -1,0 +1,53 @@
+syntax="proto3";
+
+option go_package = "./proto";
+
+package proto;
+
+service UserHandler{
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+  rpc GetUsersByIDs(GetUserListRequest) returns (GetUserListResponse); 
+}
+
+message GetUserRequest{
+  int64 ID=1;
+}
+
+message GetUserListRequest {
+  repeated int64 IDs = 1;
+}
+
+message User {
+  int64 ID = 1;
+  string Fname = 2;
+  string City = 3;
+  int64 Phone = 4;
+  float Height = 5;
+  bool Married = 6;
+}
+
+message ErrorResponse {
+  string error = 1;
+  bool status = 2;
+}
+
+message GetUserResponse {
+  oneof usermessage {
+    User user = 1;
+    string message = 2;
+  };
+  bool status = 3;
+}
+
+message SuccessListResponse {
+  repeated User users = 1;
+  repeated int64 invalidIDs = 2;
+  bool status = 3;
+}
+
+message GetUserListResponse {
+  oneof response {
+    SuccessListResponse successListResponse = 1;
+    ErrorResponse errorResponse = 2;
+  }
+}
