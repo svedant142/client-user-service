@@ -2,7 +2,7 @@
 
 This is the client side sample logic for the user-grpc-service. The service can be found - https://github.com/svedant142/user-grpc-service
 
-It consists of -
+It consists of a call to -
 ● An endpoint to fetch user details based on user id.
 ● An endpoint to fetch a list of user details based on a list of ids.
 
