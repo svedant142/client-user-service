@@ -17,18 +17,33 @@ func main() {
 	}
 	defer conn.Close()
 	client := pb.NewUserHandlerClient(conn)
-
+	//Records available by mocking database for userIDs -  
+	//  1,2,3,4,5,6,7,8,9,10,200000000000
+	
 	//Testing the two endpoints
+	fmt.Println("Endpoint to fetch user details based on user id :")
+	fmt.Println("Sample Case 1 - ")
 	GetSingleUser(client,0)
+	fmt.Println("Sample Case 2 - ")
 	GetSingleUser(client,-1)
+	fmt.Println("Sample Case 3 - ")
 	GetSingleUser(client,2)
+	fmt.Println("Sample Case 4 - ")
 	GetSingleUser(client,200000000000)
+	fmt.Println("Sample Case 5 - ")
 	GetSingleUser(client,2000)
+	fmt.Println("\nEndpoint to fetch a list of user details based on a list of ids :")
+	fmt.Println("Sample Case 1 - ")
 	GetUserList(client, []int64{0,-1,-2})
+	fmt.Println("Sample Case 2 - ")
 	GetUserList(client, []int64{})
+	fmt.Println("Sample Case 3 - ")
 	GetUserList(client, []int64{2,1,0})
+	fmt.Println("Sample Case 4 - ")
 	GetUserList(client, []int64{1,2})
+	fmt.Println("Sample Case 5 - ")
 	GetUserList(client, []int64{1,2,16})
+	fmt.Println("Sample Case 6 - ")
 	GetUserList(client, []int64{24,23,25,26,27,28})
 
 
